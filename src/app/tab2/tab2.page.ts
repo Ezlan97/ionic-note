@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-tab2',
@@ -6,7 +7,26 @@ import { Component } from '@angular/core';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+  notes = [];
+  ref = firebase.database().ref('notes/');
 
-  constructor() {}
+  constructor() {
+    this.ref.on('value', resp => {
+      this.notes = [];
+      this.notes = snapshotToArray(resp);
+    });
+  }
 
 }
+
+export const snapshotToArray = snapshot => {
+  let returnArr = [];
+
+  snapshot.forEach(childSnapshot => {
+    let item = childSnapshot.val();
+    item.key = childSnapshot.key;
+    returnArr.push(item);
+  });
+
+  return returnArr;
+};

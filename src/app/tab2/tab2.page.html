@@ -1,9 +1,16 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Tab Two
+      Ionic Note
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <!-- all notes -->
+  <ion-list *ngFor="let data of notes">
+    <ion-item detail lines="full">
+      {{ data.title }}
+    </ion-item>
+  </ion-list>
+</ion-content>

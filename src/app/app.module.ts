@@ -9,6 +9,11 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+//import firebase, firebase environment conf and initialize firebase
+import * as firebase from 'firebase';
+import {environment} from '../environments/environment';
+firebase.initializeApp(environment.firebaseConfig);
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
